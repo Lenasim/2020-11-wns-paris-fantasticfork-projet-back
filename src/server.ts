@@ -32,13 +32,16 @@ const server = new ApolloServer({
 
 // init app
 const app = express();
+
+const origin:(string)[] = [
+  process.env.CLIENT_DEV??"",
+  process.env.CLIENT_PRE_PROD??"",
+  process.env.CLIENT_PROD??"",
+]
+
 app.use(
   cors({
-    origin: [
-      'http://localhost:3000',
-      'https://stud-connect.netlify.app',
-      'https://studconnect.wns.wilders.dev',
-    ],
+    origin,
     credentials: true,
   })
 );
